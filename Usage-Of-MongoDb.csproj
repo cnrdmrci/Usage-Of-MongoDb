@@ -6,4 +6,8 @@
     <RootNamespace>Usage_Of_MongoDb</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.10.1" />
+  </ItemGroup>
+
 </Project>
