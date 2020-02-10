@@ -6,7 +6,9 @@ namespace Usage_Of_MongoDb
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Program started.");
+
+            Client.ObjeOlustur("AdressBook").RunCRUD();
 
             Console.ReadLine();
         }
