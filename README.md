@@ -415,3 +415,48 @@ OLAP sistemler veri kaynağı olarak genelde OLTP sistemleri kullanırlar. Bu il
 - OLTP tipi sistemlerde OLAP’dan çok daha fazla sayıda detay barındırılmaktadır.
 - OLTP üzerinde SQL sorguları kullanılırken, OLAP üzerinde ise SQL diline benzeyen ve MDX (Multi Dimensional eXpression Language) sorgulama dili kullanılır.
 - OLTP sistemleri “Şu an  neler oluyor?” sorusuna cevap vermek için kullanabilecekken,   OLAP sistemleri “Gelecekte ne olacak?” veya “Geçmişte neler olmuş?” sorularına cevap vermek için kullanabiliriz.
+
+# SQL vs NoSQL
+- One of the key differentiator is that NoSQL supported by column oriented databases where RDBMS is row oriented database.
+- NoSQL seems to work better on both unstructured and unrelated data. The better solutions are the crossover databases that have elements of both NoSQL and SQL.
+- RDBMSs that use SQL are schema–oriented which means the structure of the data should be known in advance to ensure that the data adheres to the schema. For example, predefined schema based applications that use SQL include Payroll Management System, Order Processing and Flight Reservations.
+- SQL Databases are vertically scalable – this means that they can only be scaled by enhancing the horse power of the implementation hardware, thereby making it a costly deal for processing large batches of data.
+- NoSQL databases give up some features of the traditional databases for speed and horizontal scalability. NoSQL databases on the other hand are perceived to be cheaper, faster and safer to extend a preexisting program to do a new job than to implement something from scratch.
+- Even though SQL has its own set of limits, it is also a very mature technology, which is well understood, and has a large pool of developers who understand how to use it well.
+- More importantly, data Integrity is a key feature of SQL based databases. This means, ensuring the data is validated across all the tables and there’s no duplicate, unrelated or unauthorized data inserted in the system.
+- Advantages of SQL databases are that they are typically more performant when dealing with more complex queries. Users cite the relational nature of SQL DBs encourages a well-structured database
+- Most banking institutions have a SQL-type database system
+
+
+|Parameter  |SQL |NOSQL |
+|---------  |--- |----- |
+|Definition |SQL databases are primarily called RDBMS or Relational Databases |NoSQL databases are primarily called as Non-relational or distributed database |
+|Design for |Traditional RDBMS uses SQL syntax and queries to analyze and get the data for further insights. They are used for OLAP systems. |NoSQL database system consists of various kind of database technologies. These databases were developed in response to the demands presented for the development of the modern application. |
+|Query Language |Structured query language (SQL) |No declarative query language |
+|Type |SQL databases are table based databases |NoSQL databases can be document based, key-value pairs, graph databases |
+|Schema |SQL databases have a predefined schema |NoSQL databases use dynamic schema for unstructured data. |
+|Ability to scale |SQL databases are vertically scalable |NoSQL databases are horizontally scalable |
+|Examples |Oracle, Postgres, and MS-SQL. |MongoDB, Redis, , Neo4j, Cassandra, Hbase. |
+|Best suited for |An ideal choice for the complex query intensive environment. |It is not good fit complex queries. |
+|Hierarchical data storage |SQL databases are not suitable for hierarchical data storage. |More suitable for the hierarchical data store as it supports key-value pair method. |
+|Variations |One type with minor variations. |Many different types which include key-value stores, document databases, and graph databases. |
+|Development Year |It was developed in the 1970s to deal with issues with flat file storage |Developed in the late 2000s to overcome issues and limitations of SQL databases. |
+|Open-source |A mix of open-source like Postgres &amp; MySQL, and commercial like Oracle Database. |Open-source |
+|Consistency |It should be configured for strong consistency. |It depends on DBMS as some offers strong consistency like MongoDB, whereas others offer only offers eventual consistency, like Cassandra. |
+|Best Used for |RDBMS database is the right option for solving ACID problems. |NoSQL is a best used for solving data availability problems |
+|Importance |It should be used when data validity is super important |Use when it's more important to have fast data than correct data |
+|Best option |When you need to support dynamic queries |Use when you need to scale based on changing requirements |
+|Hardware |Specialized DB hardware (Oracle Exadata, etc.) |Commodity hardware |
+|Network |Highly available network (Infiniband, Fabric Path, etc.) |Commodity network (Ethernet, etc.) |
+|Storage Type |Highly Available Storage (SAN, RAID, etc.) |Commodity drives storage (standard HDDs, JBOD) |
+|Best features |Cross-platform support, Secure and free |Easy to use, High performance, and Flexible tool. |
+|Top Companies Using |Hootsuite, CircleCI, Gauges |Airbnb, Uber, Kickstarter |
+|Average salary |The average salary for any professional SQL Developer is $84,328 per year in the U.S.A. |The average salary for "NoSQL developer" ranges from approximately $72,174 per year |
+|ACID vs. BASE Model |ACID( Atomicity, Consistency, Isolation, and Durability) is a standard for RDBMS |Base ( Basically Available, Soft state, Eventually Consistent) is a model of many NoSQL systems |
+
+
+### Common types of NoSQL databases include;
+- Key-value store — Stores data with simple indexed keys and values. Examples include Oracle NoSQL database, Redis, Aerospike, Oracle Berkeley DB, Voldemort, Amazon DynamoDB and Infinity DB. 
+- Wide column store — Uses tables, rows and columns. But the format and naming of the columns can vary in different rows within the same table. Examples include Apache Cassandra, Scylla, Datastax Enterprise, Apache HBase, Apache Kudu, Apache Parquet and MonetDB.
+- Document database — A more complex and structured version of the key-value model, which gives each document its own retrieval key. Examples include Orient DB, MarkLogic, MongoDB, IBM Cloudant, Couchbase, and Apache CouchDB.
+- Graph database — Presents interconnected data as a logical graph. Examples include Neo4j, JanusGraph, FlockDB and GraphDB.
