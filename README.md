@@ -367,28 +367,51 @@ AP -> Cassandra, CouchDb
 # ACID nedir ? #
 ACID, işlem odaklı veri tabanı kurtarma ilkeleri olarak tasarlanmıştır. Dolayısıyla, verilerin bir çeşit başarısızlık sonucu bozulmamasını sağlamak için veri tabanı işlemlerinin(transactions) uyması gereken ilkeleri sağlar.
 
-Atomicity: Ya hep ya da hiç anlamına gelmektedir. Bir transaction (işlem) içinde bütün işlemler yapılır veya biri dahi gerçekleştirilemiyorsa diğer işlemler de gerçekleştirilmez.
+- Atomicity: Ya hep ya da hiç anlamına gelmektedir. Bir transaction (işlem) içinde bütün işlemler yapılır veya biri dahi gerçekleştirilemiyorsa diğer işlemler de gerçekleştirilmez.
 
-Consistency: Her bir işlemin gerçekleştirilmesi sonrasında alınan çıktı, girdi ve yapılan işlemler ile olan tutarlılığını, tanımlanan kurallara uygunluğunu ifade eder.
+- Consistency: Her bir işlemin gerçekleştirilmesi sonrasında alınan çıktı, girdi ve yapılan işlemler ile olan tutarlılığını, tanımlanan kurallara uygunluğunu ifade eder.
 
-Isolation: Bir transaction gerçekleştirilirken, transaction’ın çalışmış olduğu alana müdahale edilemeyeceğini ifade eder.
+- Isolation: Bir transaction gerçekleştirilirken, transaction’ın çalışmış olduğu alana müdahale edilemeyeceğini ifade eder.
 
-Durability: Kullanıcıya, transaction’ın başarıyla gerçekleştirildiğini belirtmeden önce, gerçekleştirdiği işlemin ileri zamanda geri alınabilecek (recovery) şekilde loglanmasını ifade eder. İşlem sonucunda alınan “Başarılı” cevabının kesinliğine güvenilmelidir.
+- Durability: Kullanıcıya, transaction’ın başarıyla gerçekleştirildiğini belirtmeden önce, gerçekleştirdiği işlemin ileri zamanda geri alınabilecek (recovery) şekilde loglanmasını ifade eder. İşlem sonucunda alınan “Başarılı” cevabının kesinliğine güvenilmelidir.
 
 # BASE #
-ba -> basically available: parcasal hatalara okayiz. genelimiz uygun (available) olsun.
-s -> soft state: sistemde kirilganlik olabilir. sistemin state'i zaman icinde degisebilir.
-e(c) -> eventually consistency: bu sistem zamanla consistent bir hale gelecek zaten. her transaction sonrasi bunu kontrol etmek masrafli.
+- ba -> basically available: parcasal hatalara okayiz. genelimiz uygun (available) olsun.
+- s -> soft state: sistemde kirilganlik olabilir. sistemin state'i zaman icinde degisebilir.
+- e(c) -> eventually consistency: bu sistem zamanla consistent bir hale gelecek zaten. her transaction sonrasi bunu kontrol etmek masrafli.
 
 Basic Availability: Sistem CAP teoremine uygun olarak sürekli çalışır. Her bir talebe cevap verir. Fakat bu zorunluluk bir hata durumunda bile geçerli olduğu için veri tutarlılığını garanti etmez ve tüm veriye erişimi mümkün kılmaz. Yani bir nevi verinin bir kısmından feragat etmek suretiyle daha basit bir erişilebilirlik hizmeti almış olursunuz.
+
 Soft State: Verileri yazılır ancak tutarlı olmayabilir. Bu developerin görevi olarak görünür. Ayrıca veriler tüm cihazlarda aynı şekilde görünmesi garanti edilmez. 
+
 Eventualy Consistency: İşlemlerin etkileri sistemin durumuna bağlı olarak ancak bir süre sonra diğer cihazlara yansır. Yani neredeyse tutarlı bir sistem.
 
-//-----------------------------------------------------------------
-
-nosql kategorileri asagidaki gibidir;
+### nosql kategorileri asagidaki gibidir
 
 - key-value store (bkz: redis) (bkz: dynomite)
 - document store (bkz: mongodb) (bkz: couchdb)
 - wide column store (bkz: apache hbase) (bkz: apache cassandra)
 - graph database (bkz: neo4j)
+
+# Online Transactional Processing, OLTP 
+OLTP, sistemler genellikle ilişkisel veri tabanları üzerine kurulmuş, üzerinde sürekli işlem yapılan veri tabanı sistemleridir. Adından da anlaşılacağı gibi çok fazla transactional işlemler içeren yani Insert, Update, Delete (Data Manipulation Language, DML)  işlemleri içeren veri depolama sistemleridir.
+
+OLTP sistemlerde sürekli yoğun işlemler yapılır. Sağlam bir ilişkisel yapı üzerine kurulmuştur, günlük hayatta kullanılan sistemlerin çoğu OLTP ürüne kurulu sistemlerdir.
+
+OLTP sistemleri için temel vurgu, çok erişimli ortamlarda veri bütünlüğünü koruyan ve çok hızlı sorgu işleyebilmesi üzerinedir. Sorgu işleme hızı, saniye başına işlem sayısı ile ölçülen bir değerdir.
+
+# Online Analytical Processing, OLAP 
+Çevrimiçi Analitik İşleme (OLAP), geniş çaplı iş veri tabanlarını düzenlemek ve karar destek sistemini desteklemek için kullanılan bir teknolojidir. İlişkisel veri tabanının aksine veriyi tekrarlayarak depolayan, raporlama ve analiz için kullanılan, veriye hızlı erişim sağlayan yapılardır.
+
+OLAP verileri hiyerarşik olarak da düzenlenir ve tablo yerine küplerde depolanır. Çözümlenecek verilere hızlı erişim sağlamak için çok boyutlu yapılar kullanan karmaşık bir teknolojidir.
+
+### OLTP ve OLAP Sistemlerin Karşılaştırılması 
+LTP ve OLAP sistemler birbiriyle iç içe çalışan ama bir o kadar da farklı özelliklere sahip olan sistemlerdir. Şimdi bu sistemler arasındaki ilişkiden bahsedelim.
+
+OLAP sistemler veri kaynağı olarak genelde OLTP sistemleri kullanırlar. Bu ilişkiye günlük hayattan örnek vermek gerekirse, OLTP sistemler OLAP sistemler için yakıt görevini görür diyebiliriz.
+
+- OLTP türü sistemler, her gün çok sayıda işleme, girdi-çıktıya ve güncellemeye uygun sistemlerdir. Fakat canlı sistemlerde karmaşık sorgulama işlemleri sistemde bir takım sorunlara ve yavaşlamalara yol açabilir. Bunun için OLAP sistemleri geliştirilmiştir.
+- OLTP günlük operasyonel kullanım için uygun bir yöntem iken, OLAP arka planda uzun soluklu analizler için uygun bir yöntemdir.
+- OLTP tipi sistemlerde OLAP’dan çok daha fazla sayıda detay barındırılmaktadır.
+- OLTP üzerinde SQL sorguları kullanılırken, OLAP üzerinde ise SQL diline benzeyen ve MDX (Multi Dimensional eXpression Language) sorgulama dili kullanılır.
+- OLTP sistemleri “Şu an  neler oluyor?” sorusuna cevap vermek için kullanabilecekken,   OLAP sistemleri “Gelecekte ne olacak?” veya “Geçmişte neler olmuş?” sorularına cevap vermek için kullanabiliriz.
