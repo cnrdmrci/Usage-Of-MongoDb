@@ -304,7 +304,7 @@ Sonrasında yapılacak işlemlerin atomik olmayacağını göz önünde bulundur
 
 //----------------------------------------------------
 
-#CAP Teoremi #
+# CAP Teoremi #
 CAP dediğimiz teoremi 1998'de Eric Brewer tarafından ortaya atılmıştır.Teorem basit olarak dağıtık bir sistemde veri üzerinden sunulan hizmet için aynı anda 3 özelligin sağlanamayacağıdır. Yukarıdaki resimlerdende görüldüğü gibi tasarlardığınız sistem CA, CP veya AP olabilir. CAP olamaz.
 
 Consistency(Tutarlılık): Dağıtık bir sistemde bir sunucuya x değeri olarak 5 yazdınız. Aynı sorguyu ağınızdaki başka sunucuya yaptınız ve cevap olarak 5 değerini aldınız. Bu tutarlılıktır.
@@ -364,7 +364,7 @@ AP -> Cassandra, CouchDb
 - partition tolerance: sistemdeki nodelardan bazıları bir sekilde kendi aralarındaki iletişimi kaybederse (crash olur, network outage olur) sistem calismaya devam eder.
 
 
-#ACID nedir ? #
+# ACID nedir ? #
 ACID, işlem odaklı veri tabanı kurtarma ilkeleri olarak tasarlanmıştır. Dolayısıyla, verilerin bir çeşit başarısızlık sonucu bozulmamasını sağlamak için veri tabanı işlemlerinin(transactions) uyması gereken ilkeleri sağlar.
 
 Atomicity: Ya hep ya da hiç anlamına gelmektedir. Bir transaction (işlem) içinde bütün işlemler yapılır veya biri dahi gerçekleştirilemiyorsa diğer işlemler de gerçekleştirilmez.
@@ -375,7 +375,7 @@ Isolation: Bir transaction gerçekleştirilirken, transaction’ın çalışmı�
 
 Durability: Kullanıcıya, transaction’ın başarıyla gerçekleştirildiğini belirtmeden önce, gerçekleştirdiği işlemin ileri zamanda geri alınabilecek (recovery) şekilde loglanmasını ifade eder. İşlem sonucunda alınan “Başarılı” cevabının kesinliğine güvenilmelidir.
 
-#BASE#
+# BASE #
 ba -> basically available: parcasal hatalara okayiz. genelimiz uygun (available) olsun.
 s -> soft state: sistemde kirilganlik olabilir. sistemin state'i zaman icinde degisebilir.
 e(c) -> eventually consistency: bu sistem zamanla consistent bir hale gelecek zaten. her transaction sonrasi bunu kontrol etmek masrafli.
